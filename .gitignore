@@ -1,0 +1,17 @@
+*.suo
+*.lock
+*.ide
+*.cache
+*.txt
+*.pdb
+*.props
+*.targets
+*.CopyComplete
+*.ide-wal
+*.ide-shm
+*.dll
+*.json
+*.AssemblyInfo.cs
+*.Program.cs
+*.nuspec
+*.dtbcache
