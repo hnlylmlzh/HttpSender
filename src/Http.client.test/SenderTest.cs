@@ -9,8 +9,15 @@ namespace Http.client.test
         [Fact]
         public void GetTest()
         {
-            string getResult = Sender.Get("http://localhost:5000/api/values/1");
-            Assert.Equal("value",getResult);
+            string getResult = Sender.Get("http://localhost:5000/home/about?a=1");
+            Assert.Equal("Get 1",getResult);
+        }
+
+        [Fact]
+        public void PostTest()
+        {
+            string postResult = Sender.Post("http://localhost:5000/home/contact", "b=2");
+            Assert.Equal("Post 2", postResult);
         }
     }
 }
