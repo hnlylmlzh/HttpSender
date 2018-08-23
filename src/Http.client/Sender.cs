@@ -25,5 +25,11 @@ namespace Http.client
             HttpResponseMessage result = client.PostAsync(url, contentStream).Result;
             return result.Content.ReadAsStringAsync().Result;
         }
+
+        public static string Post(string url, Dictionary<string,string> content)
+        {
+            HttpResponseMessage result = client.PostAsync(url, new FormUrlEncodedContent(content)).Result;
+            return result.Content.ReadAsStringAsync().Result;
+        }
     }
 }

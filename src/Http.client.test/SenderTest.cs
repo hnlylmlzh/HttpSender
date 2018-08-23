@@ -1,6 +1,7 @@
 ﻿using System;
 using Xunit;
 using Http.client;
+using System.Collections.Generic;
 
 namespace Http.client.test
 {
@@ -18,6 +19,14 @@ namespace Http.client.test
         {
             string postResult = Sender.Post("http://localhost:5000/home/contact", "b=2");
             Assert.Equal("Post 2", postResult);
+        }
+
+        [Fact]
+        public void PostDictionaryTest()
+        {
+            Dictionary<string, string> test = new Dictionary<string, string> { { "b", "3" } };
+            string postResult = Sender.Post("http://localhost:5000/home/contact", test);
+            Assert.Equal("Post 3", postResult);
         }
     }
 }
