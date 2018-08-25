@@ -1,4 +1,3 @@
 # Http.client
-A C# library to send http request
-<br>
-.NET Version: .net standard 2.0
+A C# library to send http request  
+.net version: .Net standard 2.0
