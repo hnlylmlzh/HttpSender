@@ -10,22 +10,25 @@ namespace Http.client.test
         [Fact]
         public void GetTest()
         {
-            string getResult = Sender.Get("http://localhost:5000/home/about?a=1");
+            Sender sender = new Sender();
+            string getResult = sender.Get("http://localhost:5000/home/about?a=1");
             Assert.Equal("Get 1",getResult);
         }
 
         [Fact]
         public void PostTest()
         {
-            string postResult = Sender.Post("http://localhost:5000/home/contact", "b=2");
+            Sender sender = new Sender();
+            string postResult = sender.Post("http://localhost:5000/home/contact", "b=2");
             Assert.Equal("Post 2", postResult);
         }
 
         [Fact]
         public void PostDictionaryTest()
         {
+            Sender sender = new Sender();
             Dictionary<string, string> test = new Dictionary<string, string> { { "b", "3" } };
-            string postResult = Sender.Post("http://localhost:5000/home/contact", test);
+            string postResult = sender.Post("http://localhost:5000/home/contact", test);
             Assert.Equal("Post 3", postResult);
         }
     }

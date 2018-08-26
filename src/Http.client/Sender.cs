@@ -10,13 +10,13 @@ namespace Http.client
     {
         private static HttpClient client = new HttpClient();
 
-        public static string Get(string url)
+        public string Get(string url)
         {
             HttpResponseMessage result = client.GetAsync(url).Result;
             return result.Content.ReadAsStringAsync().Result;
         }
 
-        public static string Post(string url,string content)
+        public string Post(string url,string content)
         {
             byte[] byteArray = Encoding.ASCII.GetBytes(content);
             MemoryStream memory = new MemoryStream(byteArray);
@@ -26,7 +26,7 @@ namespace Http.client
             return result.Content.ReadAsStringAsync().Result;
         }
 
-        public static string Post(string url, Dictionary<string,string> content)
+        public string Post(string url, Dictionary<string,string> content)
         {
             HttpResponseMessage result = client.PostAsync(url, new FormUrlEncodedContent(content)).Result;
             return result.Content.ReadAsStringAsync().Result;
