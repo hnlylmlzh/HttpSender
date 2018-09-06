@@ -1,16 +1,16 @@
 ﻿using System;
 using Xunit;
-using Http.client;
+using Http.Messenger;
 using System.Collections.Generic;
 
-namespace Http.client.test
+namespace Http.Messenger.Test
 {
-    public class SenderTest
+    public class PigeonTest
     {
         [Fact]
         public void GetTest()
         {
-            Sender sender = new Sender();
+            Pigeon sender = new Pigeon();
             string getResult = sender.Get("http://localhost:5000/home/about?a=1");
             Assert.Equal("Get 1",getResult);
         }
@@ -18,7 +18,7 @@ namespace Http.client.test
         [Fact]
         public void PostTest()
         {
-            Sender sender = new Sender();
+            Pigeon sender = new Pigeon();
             string postResult = sender.Post("http://localhost:5000/home/contact", "b=2");
             Assert.Equal("Post 2", postResult);
         }
@@ -26,7 +26,7 @@ namespace Http.client.test
         [Fact]
         public void PostDictionaryTest()
         {
-            Sender sender = new Sender();
+            Pigeon sender = new Pigeon();
             Dictionary<string, string> test = new Dictionary<string, string> { { "b", "3" } };
             string postResult = sender.Post("http://localhost:5000/home/contact", test);
             Assert.Equal("Post 3", postResult);

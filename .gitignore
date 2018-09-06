@@ -17,5 +17,5 @@
 *.dtbcache
 
 /src/test.server/obj/
-/src/Http.client.test/obj/
+/src/Http.Messenger.Test/obj/
 /src/.vs/

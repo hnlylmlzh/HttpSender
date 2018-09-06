@@ -4,9 +4,9 @@ using System.Text;
 using System.Net.Http;
 using System.IO;
 
-namespace Http.client
+namespace Http.Messenger
 {
-    public class Sender
+    public class Pigeon
     {
         private static HttpClient client = new HttpClient();
 
