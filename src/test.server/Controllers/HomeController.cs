@@ -12,13 +12,25 @@ namespace test.server.Controllers
         [HttpGet]
         public string About(string a)
         {
-            return "Get "+a;
+            return $"Get {a}";
         }
 
         [HttpPost]
         public string Contact(string b)
         {
-            return "Post " + b;
+            return $"Post {b}";
+        }
+
+        [HttpPut]
+        public string TestPut(string c)
+        {
+            return $"Put {c}";
+        }
+
+        [HttpDelete]
+        public string TestDelete(string d)
+        {
+            return $"Delete {d}";
         }
     }
 }

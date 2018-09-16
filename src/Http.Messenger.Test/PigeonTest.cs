@@ -31,5 +31,22 @@ namespace Http.Messenger.Test
             string postResult = sender.Post("http://localhost:5000/home/contact", test);
             Assert.Equal("Post 3", postResult);
         }
+
+        [Fact]
+        public void PutTest()
+        {
+            Pigeon sender = new Pigeon();
+            Dictionary<string, string> test = new Dictionary<string, string> { { "c", "4" } };
+            string putResult = sender.Put("http://localhost:5000/home/testput", test);
+            Assert.Equal("Put 4", putResult);
+        }
+
+        [Fact]
+        public void DeleteTest()
+        {
+            Pigeon sender = new Pigeon();
+            string putResult = sender.Delete("http://localhost:5000/home/testdelete?d=5");
+            Assert.Equal("Delete 5", putResult);
+        }
     }
 }

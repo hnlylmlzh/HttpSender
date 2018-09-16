@@ -31,5 +31,17 @@ namespace Http.Messenger
             HttpResponseMessage result = client.PostAsync(url, new FormUrlEncodedContent(content)).Result;
             return result.Content.ReadAsStringAsync().Result;
         }
+
+        public string Put(string url, Dictionary<string,string> content)
+        {
+            HttpResponseMessage result = client.PutAsync(url, new FormUrlEncodedContent(content)).Result;
+            return result.Content.ReadAsStringAsync().Result;
+        }
+
+        public string Delete(string url)
+        {
+            HttpResponseMessage result = client.DeleteAsync(url).Result;
+            return result.Content.ReadAsStringAsync().Result;
+        }
     }
 }
