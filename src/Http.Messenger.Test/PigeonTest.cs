@@ -33,20 +33,28 @@ namespace Http.Messenger.Test
         }
 
         [Fact]
+        public void PutUrlTest()
+        {
+            Pigeon sender = new Pigeon();
+            string putResult = sender.Put("http://localhost:5000/home/testput?c=4");
+            Assert.Equal("Put 4", putResult);
+        }
+
+        [Fact]
         public void PutTest()
         {
             Pigeon sender = new Pigeon();
-            Dictionary<string, string> test = new Dictionary<string, string> { { "c", "4" } };
+            Dictionary<string, string> test = new Dictionary<string, string> { { "c", "5" } };
             string putResult = sender.Put("http://localhost:5000/home/testput", test);
-            Assert.Equal("Put 4", putResult);
+            Assert.Equal("Put 5", putResult);
         }
 
         [Fact]
         public void DeleteTest()
         {
             Pigeon sender = new Pigeon();
-            string putResult = sender.Delete("http://localhost:5000/home/testdelete?d=5");
-            Assert.Equal("Delete 5", putResult);
+            string deleteResult = sender.Delete("http://localhost:5000/home/testdelete?d=6");
+            Assert.Equal("Delete 6", deleteResult);
         }
     }
 }

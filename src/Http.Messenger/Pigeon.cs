@@ -32,6 +32,12 @@ namespace Http.Messenger
             return result.Content.ReadAsStringAsync().Result;
         }
 
+        public string Put(string url)
+        {
+            HttpResponseMessage result = client.PutAsync(url, null).Result;
+            return result.Content.ReadAsStringAsync().Result;
+        }
+
         public string Put(string url, Dictionary<string,string> content)
         {
             HttpResponseMessage result = client.PutAsync(url, new FormUrlEncodedContent(content)).Result;
