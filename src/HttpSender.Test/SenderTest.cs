@@ -1,16 +1,16 @@
 ﻿using System;
 using Xunit;
-using Http.Messenger;
+using HttpSender;
 using System.Collections.Generic;
 
-namespace Http.Messenger.Test
+namespace HttpSender.Test
 {
     public class PigeonTest
     {
         [Fact]
         public void GetTest()
         {
-            Pigeon sender = new Pigeon();
+            Sender sender = new Sender();
             string getResult = sender.Get("http://localhost:5000/home/about?a=1");
             Assert.Equal("Get 1",getResult);
         }
@@ -18,7 +18,7 @@ namespace Http.Messenger.Test
         [Fact]
         public void PostTest()
         {
-            Pigeon sender = new Pigeon();
+            Sender sender = new Sender();
             string postResult = sender.Post("http://localhost:5000/home/contact", "b=2");
             Assert.Equal("Post 2", postResult);
         }
@@ -26,7 +26,7 @@ namespace Http.Messenger.Test
         [Fact]
         public void PostDictionaryTest()
         {
-            Pigeon sender = new Pigeon();
+            Sender sender = new Sender();
             Dictionary<string, string> test = new Dictionary<string, string> { { "b", "3" } };
             string postResult = sender.Post("http://localhost:5000/home/contact", test);
             Assert.Equal("Post 3", postResult);
@@ -35,7 +35,7 @@ namespace Http.Messenger.Test
         [Fact]
         public void PutUrlTest()
         {
-            Pigeon sender = new Pigeon();
+            Sender sender = new Sender();
             string putResult = sender.Put("http://localhost:5000/home/testput?c=4");
             Assert.Equal("Put 4", putResult);
         }
@@ -43,7 +43,7 @@ namespace Http.Messenger.Test
         [Fact]
         public void PutTest()
         {
-            Pigeon sender = new Pigeon();
+            Sender sender = new Sender();
             Dictionary<string, string> test = new Dictionary<string, string> { { "c", "5" } };
             string putResult = sender.Put("http://localhost:5000/home/testput", test);
             Assert.Equal("Put 5", putResult);
@@ -52,7 +52,7 @@ namespace Http.Messenger.Test
         [Fact]
         public void DeleteTest()
         {
-            Pigeon sender = new Pigeon();
+            Sender sender = new Sender();
             string deleteResult = sender.Delete("http://localhost:5000/home/testdelete?d=6");
             Assert.Equal("Delete 6", deleteResult);
         }
