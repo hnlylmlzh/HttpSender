@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace HttpSender.Test
 {
-    public class PigeonTest
+    public class SenderTest
     {
         [Fact]
         public void GetTest()
@@ -55,6 +55,13 @@ namespace HttpSender.Test
             Sender sender = new Sender();
             string deleteResult = sender.Delete("http://localhost:5000/home/testdelete?d=6");
             Assert.Equal("Delete 6", deleteResult);
+        }
+
+        [Fact]
+        public void WaitTest()
+        {
+            Sender sender = new Sender();
+            Assert.Throws<AggregateException>(()=>sender.Get("http://localhost:5000/home/wait?a=1"));
         }
     }
 }

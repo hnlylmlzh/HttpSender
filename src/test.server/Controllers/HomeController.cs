@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace test.server.Controllers
 {
@@ -12,6 +13,13 @@ namespace test.server.Controllers
         [HttpGet]
         public string About(string a)
         {
+            return $"Get {a}";
+        }
+
+        [HttpGet]
+        public string Wait(string a)
+        {
+            Thread.Sleep(2300);
             return $"Get {a}";
         }
 
