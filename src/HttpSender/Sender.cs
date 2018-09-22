@@ -11,12 +11,9 @@ namespace HttpSender
     {
         private static HttpClient client = new HttpClient() { Timeout=TimeSpan.FromMilliseconds(2000)};
 
-        public static string OAuthToken
+        public static void OAuth(string token)
         {
-            set
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", value);
-            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
 
         public static string Get(string url)
