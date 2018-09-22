@@ -11,37 +11,22 @@ namespace HttpSender
     {
         private static HttpClient client = new HttpClient() { Timeout=TimeSpan.FromMilliseconds(2000)};
 
-        private string token;
-        public string Token
+        public static string OAuthToken
         {
             set
             {
-                if(string.IsNullOrWhiteSpace(value))
-                {
-                    client.DefaultRequestHeaders.Remove("Bearer");
-                }
-                token = value;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", value);
             }
         }
 
-        private void AddOAuthToken()
+        public static string Get(string url)
         {
-            if (string.IsNullOrWhiteSpace(token) == false)
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            }
-        }
-
-        public string Get(string url)
-        {
-            AddOAuthToken();
             HttpResponseMessage result = client.GetAsync(url).Result;
             return result.Content.ReadAsStringAsync().Result;
         }
 
-        public string Post(string url,string content)
+        public static string Post(string url,string content)
         {
-            AddOAuthToken();
             byte[] byteArray = Encoding.ASCII.GetBytes(content);
             MemoryStream memory = new MemoryStream(byteArray);
             StreamContent contentStream = new StreamContent(memory);
@@ -50,30 +35,26 @@ namespace HttpSender
             return result.Content.ReadAsStringAsync().Result;
         }
 
-        public string Post(string url, Dictionary<string,string> content)
+        public static string Post(string url, Dictionary<string,string> content)
         {
-            AddOAuthToken();
             HttpResponseMessage result = client.PostAsync(url, new FormUrlEncodedContent(content)).Result;
             return result.Content.ReadAsStringAsync().Result;
         }
 
-        public string Put(string url)
+        public static string Put(string url)
         {
-            AddOAuthToken();
             HttpResponseMessage result = client.PutAsync(url, null).Result;
             return result.Content.ReadAsStringAsync().Result;
         }
 
-        public string Put(string url, Dictionary<string,string> content)
+        public static string Put(string url, Dictionary<string,string> content)
         {
-            AddOAuthToken();
             HttpResponseMessage result = client.PutAsync(url, new FormUrlEncodedContent(content)).Result;
             return result.Content.ReadAsStringAsync().Result;
         }
 
-        public string Delete(string url)
+        public static string Delete(string url)
         {
-            AddOAuthToken();
             HttpResponseMessage result = client.DeleteAsync(url).Result;
             return result.Content.ReadAsStringAsync().Result;
         }
