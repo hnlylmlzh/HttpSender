@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System.Web.Mvc;
 using System.Threading;
+using test.server.Auth;
 
 namespace test.server.Controllers
 {
@@ -39,6 +40,13 @@ namespace test.server.Controllers
         public string TestDelete(string d)
         {
             return $"Delete {d}";
+        }
+
+        [AuthTest]
+        [HttpGet]
+        public string TestAuth(string e)
+        {
+            return $"Auth {e}";
         }
     }
 }

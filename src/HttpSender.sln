@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpSender", "HttpSender\Ht
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpSender.Test", "HttpSender.Test\HttpSender.Test.csproj", "{942EC1C2-5D58-45E4-9050-B9127F98013F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test.server", "test.server\test.server.csproj", "{18AE1A2D-B956-4E3F-991D-E916D6769984}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{942EC1C2-5D58-45E4-9050-B9127F98013F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{942EC1C2-5D58-45E4-9050-B9127F98013F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{942EC1C2-5D58-45E4-9050-B9127F98013F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18AE1A2D-B956-4E3F-991D-E916D6769984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18AE1A2D-B956-4E3F-991D-E916D6769984}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18AE1A2D-B956-4E3F-991D-E916D6769984}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18AE1A2D-B956-4E3F-991D-E916D6769984}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -56,5 +56,21 @@ namespace HttpSender.Test
         {
             Assert.Throws<AggregateException>(()=>Sender.Get("http://localhost:5000/home/wait?a=1"));
         }
+
+        [Fact]
+        public void AuthSuccessTest()
+        {
+            Sender.OAuth("test");
+            string result = Sender.Get("http://localhost:5000/home/testauth?e=7");
+            Assert.Equal("Auth 7", result);
+        }
+
+        [Fact]
+        public void AuthFailTest()
+        {
+            Sender.OAuth("test1");
+            string result = Sender.Get("http://localhost:5000/home/testauth?e=7");
+            Assert.NotEqual("Auth 7", result);
+        }
     }
 }
