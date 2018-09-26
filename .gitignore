@@ -18,6 +18,7 @@
 
 /test.server/test.server/bin/
 /test.server/test.server/obj/
+/test.server/test.server/.vs/
 /test.server/packages/
 /src/HttpSender.Test/obj/
 /src/.vs/
