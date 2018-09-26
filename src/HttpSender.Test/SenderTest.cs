@@ -58,18 +58,15 @@ namespace HttpSender.Test
         }
 
         [Fact]
-        public void AuthSuccessTest()
+        public void AuthTest()
         {
+            string result = Sender.Get("http://localhost:5000/home/testauth?e=7");
+            Assert.NotEqual("Auth 7", result);
             Sender.OAuth("test");
-            string result = Sender.Get("http://localhost:5000/home/testauth?e=7");
+            result = Sender.Get("http://localhost:5000/home/testauth?e=7");
             Assert.Equal("Auth 7", result);
-        }
-
-        [Fact]
-        public void AuthFailTest()
-        {
             Sender.OAuth("test1");
-            string result = Sender.Get("http://localhost:5000/home/testauth?e=7");
+            result = Sender.Get("http://localhost:5000/home/testauth?e=7");
             Assert.NotEqual("Auth 7", result);
         }
     }
