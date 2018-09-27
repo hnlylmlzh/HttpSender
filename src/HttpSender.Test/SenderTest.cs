@@ -65,6 +65,8 @@ namespace HttpSender.Test
             Sender.OAuth("test");
             result = Sender.Get("http://localhost:5000/home/testauth?e=7");
             Assert.Equal("Auth 7", result);
+            result = Sender.Get("http://localhost:5000/home/testauth?e=8");
+            Assert.Equal("Auth 8", result);
             Sender.OAuth("test1");
             result = Sender.Get("http://localhost:5000/home/testauth?e=7");
             Assert.NotEqual("Auth 7", result);
