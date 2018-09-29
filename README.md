@@ -2,7 +2,7 @@
 A simple C# library to send Http request
 
 ## Usage
-NameSpace: HttpSender
+NameSpace: HttpSender  
 Class: Sender
 
 ### Send Get Request
