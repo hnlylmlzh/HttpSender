@@ -1,3 +1,3 @@
 # HttpSender
-A C# library to send http request  
-.net version: .Net Standard 2.0
+A simple C# library to send Http request
+
