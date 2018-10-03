@@ -1,4 +1,4 @@
-# HttpSender
+# HttpSender ![avatar](https://img.shields.io/badge/nuget-v0.0.0-yellowgreen.svg)
 A simple C# library to send Http request
 
 ## Usage
