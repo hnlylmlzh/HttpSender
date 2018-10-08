@@ -46,7 +46,7 @@ string Response = Sender.Delete("http://localhost:5000/home/delete?info=used");
 ### Set OAuth Token in the Http header
 static void OAuth(string token)
 ```
-//Imagining that the oauth token is "your_token"
+//Providing that the oauth token is this string, "your_token"
 Sender.OAuth("your_token");
 string Result = Sender.Get("http://localhost:5000/home/secret");
 ```
