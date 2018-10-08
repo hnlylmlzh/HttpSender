@@ -3,7 +3,7 @@ A simple C# library to send Http request
 
 ## Usage
 **NameSpace**: HttpSender  
-**Class**:     Sender
+**Class**: Sender
 
 ## Send Get Request
 **static string Get(string url)**  
