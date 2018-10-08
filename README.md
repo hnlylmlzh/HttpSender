@@ -6,7 +6,7 @@ A simple C# library to send Http request
 **Class**: Sender
 
 ### Send Get Request
-#### static string Get(string url)  
+#### static string Get(string url)
 ```
 string Response = Sender.Get("http://localhost:5000/home/info?username=jim");
 ```
