@@ -6,18 +6,38 @@ NameSpace: HttpSender
 Class: Sender
 
 ### Send Get Request
-static string Get(string url)
+static string Get(string url)  
+  string Response = Sender.Get("http://localhost:5000/home/about?a=1");
 
 ### Send Post Request
 static string Post(string url,string content)  
-static string Post(string url, Dictionary<string,string> content)
+  string Response = Sender.Post("http://localhost:5000/home/login", "username=jim&password=123456");  
+  
+static string Post(string url, Dictionary<string,string> content)  
+  Dictionary<string, string> LoginInfo = new Dictionary<string, string> 
+  { 
+    { "username", "jim" },
+    { "password", "123456" }
+  };
+  string Response = Sender.Post("http://localhost:5000/home/login", LoginInfo);
 
 ### Send Put Request
 static string Put(string url)  
-static string Put(string url, Dictionary<string,string> content)
+  string Response = Sender.Put("http://localhost:5000/home/change?username=jim&age=15");
+  
+static string Put(string url, Dictionary<string,string> content)  
+  Dictionary<string, string> UpdateInfo = new Dictionary<string, string> 
+  { 
+    { "username", "jim" },
+    { "age" , "15"}
+  };
+string Response = Sender.Put("http://localhost:5000/home/testput", UpdateInfo);
 
 ### Send Delete Request
-static string Delete(string url)
+static string Delete(string url)  
+  string Response = Sender.Delete("http://localhost:5000/home/delete?time=used");
 
 ### Set OAuth Token in the Http header
 static void OAuth(string token)
+  Sender.OAuth("token");
+  string Result = Sender.Get("http://localhost:5000/home/testauth?e=7");
