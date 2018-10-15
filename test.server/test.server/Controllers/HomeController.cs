@@ -48,5 +48,29 @@ namespace test.server.Controllers
         {
             return $"Auth {e}";
         }
+
+        [HttpGet]
+        public string Info(string username)
+        {
+            return $"Hello, {username}";
+        }
+
+        [HttpPost]
+        public bool Login(string username,string password)
+        {
+            return username== "jim" && password == "123456";
+        }
+
+        [HttpPut]
+        public string Update(string username, int age)
+        {
+            return $"{username}'s age is {age}";
+        }
+
+        [HttpDelete]
+        public string Delete(string username, string year)
+        {
+            return $"{username}'s information in {year} has been deleted";
+        }
     }
 }

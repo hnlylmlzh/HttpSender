@@ -21,4 +21,6 @@
 /test.server/.vs/
 /test.server/packages/
 /src/HttpSender.Test/obj/
+/src/Performance.Test/obj/
+/src/Performance.Test/bin/
 /src/.vs/

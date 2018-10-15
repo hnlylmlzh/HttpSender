@@ -71,5 +71,33 @@ namespace HttpSender.Test
             result = Sender.Get("http://localhost:5000/home/testauth?e=7");
             Assert.NotEqual("Auth 7", result);
         }
+
+        [Fact]
+        public void DemoTest()
+        {
+            string Response = string.Empty;
+            Response = Sender.Get("http://localhost:5000/home/info?username=jim");
+            Assert.Equal("Hello, jim",Response);
+            Response = Sender.Post("http://localhost:5000/home/login", "username=jim&password=123456");
+            Assert.Equal("true", Response.ToLower());
+            Dictionary<string, string> LoginInfo = new Dictionary<string, string>
+            {
+              { "username", "jim" },
+              { "password", "123456" }
+            };
+            Response = Sender.Post("http://localhost:5000/home/login", LoginInfo);
+            Assert.Equal("true", Response.ToLower());
+            Response = Sender.Put("http://localhost:5000/home/update?username=jim&age=15");
+            Assert.Equal("jim's age is 15",Response);
+            Dictionary<string, string> UpdateInfo = new Dictionary<string, string>
+            {
+                { "username", "jim" },
+                { "age" , "15"}
+            };
+            Response = Sender.Put("http://localhost:5000/home/update", UpdateInfo);
+            Assert.Equal("jim's age is 15", Response);
+            Response = Sender.Delete("http://localhost:5000/home/delete?username=jim&year=2011");
+            Assert.Equal("jim's information in 2011 has been deleted",Response);
+        }
     }
 }
