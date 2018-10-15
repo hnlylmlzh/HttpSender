@@ -41,7 +41,7 @@ string Response = Sender.Put("http://localhost:5000/home/update", UpdateInfo);
 ### Send Delete Request
 #### static string Delete(string url)
 ```
-string Response = Sender.Delete("http://localhost:5000/home/delete?info=used");
+string Response = Sender.Delete("http://localhost:5000/home/delete?username=jim&year=2011");
 ```
 ### Set OAuth Token in the Http header
 #### static void OAuth(string token)
