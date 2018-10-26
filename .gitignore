@@ -18,8 +18,12 @@
 
 /test.server/MvcServer/test.server/bin/
 /test.server/MvcServer/test.server/obj/
-/test.server/.vs/
+/test.server/MvcServer/.vs/
 /test.server/MvcServer/packages/
+
+/test.server/ApiServer/.vs/
+/test.server/ApiServer/ApiServer/obj/
+
 /src/HttpSender.Test/obj/
 /src/Performance.Test/obj/
 /src/Performance.Test/bin/

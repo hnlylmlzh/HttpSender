@@ -12,6 +12,8 @@ namespace HttpSender.Test
         {
             string getResult = Sender.Get("http://localhost:5000/home/about?a=1");
             Assert.Equal("Get 1",getResult);
+            getResult = Sender.Get("http://localhost:6000/api/values");
+            Assert.Equal("[\"value1\",\"value2\"]", getResult);
         }
 
         [Fact]
