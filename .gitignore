@@ -16,10 +16,10 @@
 *.nuspec
 *.dtbcache
 
-/test.server/test.server/bin/
-/test.server/test.server/obj/
+/test.server/MvcServer/test.server/bin/
+/test.server/MvcServer/test.server/obj/
 /test.server/.vs/
-/test.server/packages/
+/test.server/MvcServer/packages/
 /src/HttpSender.Test/obj/
 /src/Performance.Test/obj/
 /src/Performance.Test/bin/
