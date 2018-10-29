@@ -24,9 +24,9 @@
 /test.server/ApiServer/.vs/
 /test.server/ApiServer/ApiServer/obj/
 
-/src/HttpSender.Test/obj/
-/src/Performance.Test/obj/
-/src/Performance.Test/bin/
-/src/.vs/
 
-/src/HttpSender/obj/
+/src/netstandard/HttpSender/obj/
+/src/netstandard/HttpSender.Test/obj/
+/src/netstandard/Performance.Test/obj/
+/src/netstandard/Performance.Test/bin/
+/src/netstandard/.vs/
