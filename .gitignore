@@ -30,3 +30,4 @@
 /src/Performance.Test/obj/
 /src/Performance.Test/bin/
 /src/.vs/
+*.nupkg
