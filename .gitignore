@@ -15,6 +15,7 @@
 *.Program.cs
 *.nuspec
 *.dtbcache
+*.nupkg
 
 /test.server/MvcServer/test.server/bin/
 /test.server/MvcServer/test.server/obj/
@@ -24,10 +25,8 @@
 /test.server/ApiServer/.vs/
 /test.server/ApiServer/ApiServer/obj/
 
-
 /src/HttpSender/obj/
 /src/HttpSender.Test/obj/
 /src/Performance.Test/obj/
 /src/Performance.Test/bin/
 /src/.vs/
-*.nupkg
