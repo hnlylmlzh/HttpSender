@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ApiServer.Models;
 
 namespace ApiServer.Controllers
 {
@@ -26,8 +27,9 @@ namespace ApiServer.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public string Post([FromForm]PostBody postBody)
         {
+            return postBody.value;
         }
 
         // PUT api/values/5

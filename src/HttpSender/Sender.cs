@@ -24,7 +24,7 @@ namespace HttpSender
 
         public static string Post(string url,string content)
         {
-            byte[] byteArray = Encoding.ASCII.GetBytes(content);
+            byte[] byteArray = Encoding.UTF8.GetBytes(content);
             MemoryStream memory = new MemoryStream(byteArray);
             StreamContent contentStream = new StreamContent(memory);
             contentStream.Headers.Add("Content-Type", "application/x-www-form-urlencoded");

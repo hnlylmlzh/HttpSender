@@ -21,6 +21,10 @@ namespace HttpSender.Test
         {
             string postResult = Sender.Post("http://localhost:5000/home/contact", "b=2");
             Assert.Equal("Post 2", postResult);
+            postResult = Sender.Post("http://localhost:6000/api/values", "value=asd");
+            Assert.Equal("asd", postResult);
+            postResult = Sender.Post("http://localhost:6000/api/values", "value=汉字");
+            Assert.Equal("汉字", postResult);
         }
 
         [Fact]
