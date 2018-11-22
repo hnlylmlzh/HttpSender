@@ -17,13 +17,7 @@
 *.dtbcache
 *.nupkg
 
-/test.server/MvcServer/test.server/bin/
-/test.server/MvcServer/test.server/obj/
-/test.server/MvcServer/.vs/
-/test.server/MvcServer/packages/
-
-/test.server/ApiServer/.vs/
-/test.server/ApiServer/ApiServer/obj/
+/test.server/
 
 /src/HttpSender/obj/
 /src/HttpSender.Test/obj/
