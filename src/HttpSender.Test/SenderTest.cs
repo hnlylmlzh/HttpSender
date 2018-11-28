@@ -2,6 +2,7 @@
 using Xunit;
 using HttpSender;
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace HttpSender.Test
 {
@@ -14,6 +15,13 @@ namespace HttpSender.Test
             Assert.Equal("Get 1",getResult);
             getResult = Sender.Get("http://localhost/apiserver/api/values");
             Assert.Equal("[\"value1\",\"value2\"]", getResult);
+        }
+
+        [Fact]
+        public void GetExceptionTest()
+        {
+            Assert.Throws<HttpRequestException>(() => Sender.Get("http://localhost:4900"));
+            Assert.Throws<TimeoutException>(() => Sender.Get("http://localhost/mvcserver/home/wait?a=2"));
         }
 
         [Fact]
@@ -57,11 +65,6 @@ namespace HttpSender.Test
             Assert.Equal("Delete 6", deleteResult);
         }
 
-        [Fact]
-        public void WaitTest()
-        {
-            Assert.Throws<AggregateException>(()=>Sender.Get("http://localhost/mvcserver/home/wait?a=1"));
-        }
 
         [Fact]
         public void AuthTest()

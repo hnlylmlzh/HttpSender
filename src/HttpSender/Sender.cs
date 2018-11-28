@@ -4,12 +4,13 @@ using System.Text;
 using System.Net.Http;
 using System.IO;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace HttpSender
 {
     public class Sender
     {
-        private static HttpClient client = new HttpClient() { Timeout=TimeSpan.FromMilliseconds(2000)};
+        private static HttpClient client = new HttpClient();
 
         public static void OAuth(string token)
         {
@@ -18,8 +19,32 @@ namespace HttpSender
 
         public static string Get(string url)
         {
-            HttpResponseMessage result = client.GetAsync(url).Result;
-            return result.Content.ReadAsStringAsync().Result;
+            Task<HttpResponseMessage> GetTask = client.GetAsync(url);
+            bool timeout;
+            try
+            {
+                timeout = GetTask.Wait(5000);
+            }
+            catch(Exception e)
+            {
+                if(e is AggregateException && e.InnerException != null)
+                {
+                    throw e.InnerException;
+                }
+                else
+                {
+                    throw e;
+                }
+            }
+            if (timeout == false)
+            {
+                throw new TimeoutException("Timeout");
+            }
+            else
+            {
+                HttpContent result = GetTask.Result.Content;
+                return result.ReadAsStringAsync().Result;
+            }
         }
 
         public static string Post(string url,string content)
