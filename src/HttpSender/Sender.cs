@@ -20,14 +20,95 @@ namespace HttpSender
         public static string Get(string url)
         {
             Task<HttpResponseMessage> GetTask = client.GetAsync(url);
-            bool timeout;
             try
             {
-                timeout = GetTask.Wait(5000);
+                return RunTask(GetTask);
             }
             catch(Exception e)
             {
-                if(e is AggregateException && e.InnerException != null)
+                throw e;
+            }
+        }
+
+        public static string Post(string url,string content)
+        {
+            byte[] byteArray = Encoding.UTF8.GetBytes(content);
+            MemoryStream memory = new MemoryStream(byteArray);
+            StreamContent contentStream = new StreamContent(memory);
+            contentStream.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+            Task<HttpResponseMessage> PostTask = client.PostAsync(url, contentStream);
+            try
+            {
+                return RunTask(PostTask);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static string Post(string url, Dictionary<string,string> content)
+        {
+            Task<HttpResponseMessage> PostTask = client.PostAsync(url, new FormUrlEncodedContent(content));
+            try
+            {
+                return RunTask(PostTask);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static string Put(string url)
+        {
+            Task<HttpResponseMessage> PutTask = client.PutAsync(url, null);
+            try
+            {
+                return RunTask(PutTask);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static string Put(string url, Dictionary<string,string> content)
+        {
+            Task<HttpResponseMessage> PutTask = client.PutAsync(url, new FormUrlEncodedContent(content));
+            try
+            {
+                return RunTask(PutTask);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static string Delete(string url)
+        {
+            Task<HttpResponseMessage> DeleteTask = client.DeleteAsync(url);
+            try
+            {
+                return RunTask(DeleteTask);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private static string RunTask(Task<HttpResponseMessage> task)
+        {
+            bool timeout;
+            try
+            {
+                timeout = task.Wait(5000);
+            }
+            catch (Exception e)
+            {
+                if (e is AggregateException && e.InnerException != null)
                 {
                     throw e.InnerException;
                 }
@@ -42,43 +123,9 @@ namespace HttpSender
             }
             else
             {
-                HttpContent result = GetTask.Result.Content;
+                HttpContent result = task.Result.Content;
                 return result.ReadAsStringAsync().Result;
             }
-        }
-
-        public static string Post(string url,string content)
-        {
-            byte[] byteArray = Encoding.UTF8.GetBytes(content);
-            MemoryStream memory = new MemoryStream(byteArray);
-            StreamContent contentStream = new StreamContent(memory);
-            contentStream.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-            HttpResponseMessage result = client.PostAsync(url, contentStream).Result;
-            return result.Content.ReadAsStringAsync().Result;
-        }
-
-        public static string Post(string url, Dictionary<string,string> content)
-        {
-            HttpResponseMessage result = client.PostAsync(url, new FormUrlEncodedContent(content)).Result;
-            return result.Content.ReadAsStringAsync().Result;
-        }
-
-        public static string Put(string url)
-        {
-            HttpResponseMessage result = client.PutAsync(url, null).Result;
-            return result.Content.ReadAsStringAsync().Result;
-        }
-
-        public static string Put(string url, Dictionary<string,string> content)
-        {
-            HttpResponseMessage result = client.PutAsync(url, new FormUrlEncodedContent(content)).Result;
-            return result.Content.ReadAsStringAsync().Result;
-        }
-
-        public static string Delete(string url)
-        {
-            HttpResponseMessage result = client.DeleteAsync(url).Result;
-            return result.Content.ReadAsStringAsync().Result;
         }
     }
 }

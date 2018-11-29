@@ -44,6 +44,15 @@ namespace HttpSender.Test
         }
 
         [Fact]
+        public void PostExceptionTest()
+        {
+            Assert.Throws<HttpRequestException>(() => Sender.Post("http://localhost:4900", "b=2"));
+            Assert.Throws<HttpRequestException>(() => Sender.Post("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
+            Assert.Throws<TimeoutException>(() => Sender.Post("http://localhost/mvcserver/home/waitpost", "a=3"));
+            Assert.Throws<TimeoutException>(() => Sender.Post("http://localhost/mvcserver/home/waitpost", new Dictionary<string, string> { { "a", "5" } }));
+        }
+
+        [Fact]
         public void PutUrlTest()
         {
             string putResult = Sender.Put("http://localhost/mvcserver/home/testput?c=4");
@@ -59,10 +68,26 @@ namespace HttpSender.Test
         }
 
         [Fact]
+        public void PutExceptionTest()
+        {
+            Assert.Throws<HttpRequestException>(() => Sender.Put("http://localhost:4900?c=4"));
+            Assert.Throws<HttpRequestException>(() => Sender.Put("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
+            Assert.Throws<TimeoutException>(() => Sender.Put("http://localhost/mvcserver/home/waitput?c=3"));
+            Assert.Throws<TimeoutException>(() => Sender.Put("http://localhost/mvcserver/home/waitput", new Dictionary<string, string> { { "a", "5" } }));
+        }
+
+        [Fact]
         public void DeleteTest()
         {
             string deleteResult = Sender.Delete("http://localhost/mvcserver/home/testdelete?d=6");
             Assert.Equal("Delete 6", deleteResult);
+        }
+
+        [Fact]
+        public void DeleteExceptionTest()
+        {
+            Assert.Throws<HttpRequestException>(() => Sender.Delete("http://localhost:4900?d=5"));
+            Assert.Throws<TimeoutException>(() => Sender.Delete("http://localhost/mvcserver/home/waitdelete?d=5"));
         }
 
 
