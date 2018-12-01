@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.1.0</Version>
-    <AssemblyVersion>0.1.0</AssemblyVersion>
-    <FileVersion>0.1.0</FileVersion>
+    <Version>0.2.0</Version>
+    <AssemblyVersion>0.2.0</AssemblyVersion>
+    <FileVersion>0.2.0</FileVersion>
     <Authors>Bingyang Leng</Authors>
     <Company />
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <SignAssembly>false</SignAssembly>
     <PackageLicenseUrl>https://github.com/bingyangleng/HttpSender/blob/master/LICENSE</PackageLicenseUrl>
-    <Description>A simple C# library to send Http request</Description>
+    <Description>A simple library to send Http request</Description>
     <PackageReleaseNotes />
     <PackageProjectUrl>https://github.com/bingyangleng/HttpSender</PackageProjectUrl>
   </PropertyGroup>
