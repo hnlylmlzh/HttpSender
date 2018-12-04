@@ -23,3 +23,10 @@
 /src/Performance.Test/obj/
 /src/Performance.Test/bin/
 /src/.vs/
+
+/src45/HttpSender/obj/
+/src45/UnitTest/obj/
+/src45/UnitTest/bin/
+/src45/packages/
+/src45/TestResults/
+/src45/.vs/
