@@ -109,14 +109,11 @@ namespace HttpSender
             }
             catch (Exception e)
             {
-                if (e is AggregateException && e.InnerException != null)
+                while (e.InnerException != null)
                 {
-                    throw e.InnerException;
+                    e = e.InnerException;
                 }
-                else
-                {
-                    throw e;
-                }
+                throw e;
             }
             if (timeout == false)
             {

@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HttpSender;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Authentication;
+using System.Net.Sockets;
 
 namespace UnitTest
 {
@@ -17,13 +19,16 @@ namespace UnitTest
             Assert.AreEqual("Get 1", getResult);
             getResult = Sender.Get("http://localhost/apiserver/api/values");
             Assert.AreEqual("[\"value1\",\"value2\"]", getResult);
+            getResult = Sender.Get("https://www.baidu.com");
+            Assert.IsTrue(getResult.Contains("<title>百度一下，你就知道</title>"));
         }
 
         [TestMethod]
         public void GetExceptionTest()
         {
-            Assert.ThrowsException<HttpRequestException>(() => Sender.Get("http://localhost:4900"));
+            Assert.ThrowsException<SocketException>(() => Sender.Get("http://localhost:4900"));
             Assert.ThrowsException<TimeoutException>(() => Sender.Get("http://localhost/mvcserver/home/wait?a=2"));
+            Assert.ThrowsException<AuthenticationException>(() => Sender.Get("https://localhost/sslserver/api/values"));
         }
 
         [TestMethod]
@@ -48,8 +53,8 @@ namespace UnitTest
         [TestMethod]
         public void PostExceptionTest()
         {
-            Assert.ThrowsException<HttpRequestException>(() => Sender.Post("http://localhost:4900", "b=2"));
-            Assert.ThrowsException<HttpRequestException>(() => Sender.Post("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
+            Assert.ThrowsException<SocketException>(() => Sender.Post("http://localhost:4900", "b=2"));
+            Assert.ThrowsException<SocketException>(() => Sender.Post("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
             Assert.ThrowsException<TimeoutException>(() => Sender.Post("http://localhost/mvcserver/home/waitpost", "a=3"));
             Assert.ThrowsException<TimeoutException>(() => Sender.Post("http://localhost/mvcserver/home/waitpost", new Dictionary<string, string> { { "a", "5" } }));
         }
@@ -72,8 +77,8 @@ namespace UnitTest
         [TestMethod]
         public void PutExceptionTest()
         {
-            Assert.ThrowsException<HttpRequestException>(() => Sender.Put("http://localhost:4900?c=4"));
-            Assert.ThrowsException<HttpRequestException>(() => Sender.Put("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
+            Assert.ThrowsException<SocketException>(() => Sender.Put("http://localhost:4900?c=4"));
+            Assert.ThrowsException<SocketException>(() => Sender.Put("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
             Assert.ThrowsException<TimeoutException>(() => Sender.Put("http://localhost/mvcserver/home/waitput?c=3"));
             Assert.ThrowsException<TimeoutException>(() => Sender.Put("http://localhost/mvcserver/home/waitput", new Dictionary<string, string> { { "a", "5" } }));
         }
@@ -88,7 +93,7 @@ namespace UnitTest
         [TestMethod]
         public void DeleteExceptionTest()
         {
-            Assert.ThrowsException<HttpRequestException>(() => Sender.Delete("http://localhost:4900?d=5"));
+            Assert.ThrowsException<SocketException>(() => Sender.Delete("http://localhost:4900?d=5"));
             Assert.ThrowsException<TimeoutException>(() => Sender.Delete("http://localhost/mvcserver/home/waitdelete?d=5"));
         }
 
