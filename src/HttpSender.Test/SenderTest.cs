@@ -3,6 +3,8 @@ using Xunit;
 using HttpSender;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Authentication;
+using System.Net.Sockets;
 
 namespace HttpSender.Test
 {
@@ -15,13 +17,16 @@ namespace HttpSender.Test
             Assert.Equal("Get 1",getResult);
             getResult = Sender.Get("http://localhost/apiserver/api/values");
             Assert.Equal("[\"value1\",\"value2\"]", getResult);
+            getResult = Sender.Get("https://www.baidu.com");
+            Assert.Contains("<title>百度一下，你就知道</title>", getResult);
         }
 
         [Fact]
         public void GetExceptionTest()
         {
-            Assert.Throws<HttpRequestException>(() => Sender.Get("http://localhost:4900"));
+            Assert.Throws<SocketException>(() => Sender.Get("http://localhost:4900"));
             Assert.Throws<TimeoutException>(() => Sender.Get("http://localhost/mvcserver/home/wait?a=2"));
+            Assert.Throws<AuthenticationException>(() => Sender.Get("https://localhost/sslserver/api/values"));
         }
 
         [Fact]
@@ -46,8 +51,8 @@ namespace HttpSender.Test
         [Fact]
         public void PostExceptionTest()
         {
-            Assert.Throws<HttpRequestException>(() => Sender.Post("http://localhost:4900", "b=2"));
-            Assert.Throws<HttpRequestException>(() => Sender.Post("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
+            Assert.Throws<SocketException>(() => Sender.Post("http://localhost:4900", "b=2"));
+            Assert.Throws<SocketException>(() => Sender.Post("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
             Assert.Throws<TimeoutException>(() => Sender.Post("http://localhost/mvcserver/home/waitpost", "a=3"));
             Assert.Throws<TimeoutException>(() => Sender.Post("http://localhost/mvcserver/home/waitpost", new Dictionary<string, string> { { "a", "5" } }));
         }
@@ -70,8 +75,8 @@ namespace HttpSender.Test
         [Fact]
         public void PutExceptionTest()
         {
-            Assert.Throws<HttpRequestException>(() => Sender.Put("http://localhost:4900?c=4"));
-            Assert.Throws<HttpRequestException>(() => Sender.Put("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
+            Assert.Throws<SocketException>(() => Sender.Put("http://localhost:4900?c=4"));
+            Assert.Throws<SocketException>(() => Sender.Put("http://localhost:4900", new Dictionary<string, string> { { "a", "5" } }));
             Assert.Throws<TimeoutException>(() => Sender.Put("http://localhost/mvcserver/home/waitput?c=3"));
             Assert.Throws<TimeoutException>(() => Sender.Put("http://localhost/mvcserver/home/waitput", new Dictionary<string, string> { { "a", "5" } }));
         }
@@ -86,7 +91,7 @@ namespace HttpSender.Test
         [Fact]
         public void DeleteExceptionTest()
         {
-            Assert.Throws<HttpRequestException>(() => Sender.Delete("http://localhost:4900?d=5"));
+            Assert.Throws<SocketException>(() => Sender.Delete("http://localhost:4900?d=5"));
             Assert.Throws<TimeoutException>(() => Sender.Delete("http://localhost/mvcserver/home/waitdelete?d=5"));
         }
 
