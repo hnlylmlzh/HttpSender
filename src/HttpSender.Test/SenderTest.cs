@@ -15,9 +15,13 @@ namespace HttpSender.Test
         {
             string getResult = Sender.Get("http://localhost/mvcserver/home/about?a=1");
             Assert.Equal("Get 1",getResult);
+            getResult = Sender.Get("localhost/mvcserver/home/about?a=2");
+            Assert.Equal("Get 2", getResult);
             getResult = Sender.Get("http://localhost/apiserver/api/values");
             Assert.Equal("[\"value1\",\"value2\"]", getResult);
             getResult = Sender.Get("https://www.baidu.com");
+            Assert.Contains("<title>百度一下，你就知道</title>", getResult);
+            getResult = Sender.Get("www.baidu.com");
             Assert.Contains("<title>百度一下，你就知道</title>", getResult);
         }
 
@@ -36,6 +40,8 @@ namespace HttpSender.Test
             Assert.Equal("Post 2", postResult);
             postResult = Sender.Post("http://localhost/apiserver/api/values", "value=asd");
             Assert.Equal("\"asd\"", postResult);
+            postResult = Sender.Post("localhost/apiserver/api/values", "value=test");
+            Assert.Equal("\"test\"", postResult);
             postResult = Sender.Post("http://localhost/apiserver/api/values", "value=汉字");
             Assert.Equal("\"汉字\"", postResult);
         }
