@@ -52,6 +52,12 @@ namespace HttpSender.Test
             Dictionary<string, string> test = new Dictionary<string, string> { { "b", "3" } };
             string postResult = Sender.Post("http://localhost/mvcserver/home/contact", test);
             Assert.Equal("Post 3", postResult);
+            test = new Dictionary<string, string> { { "b", "8" } };
+            postResult = Sender.Post("localhost/mvcserver/home/contact", test);
+            Assert.Equal("Post 8", postResult);
+            test = new Dictionary<string, string> { { "b", "15" } };
+            postResult = Sender.Post("127.0.0.1/mvcserver/home/contact", test);
+            Assert.Equal("Post 15", postResult);
         }
 
         [Fact]
@@ -68,6 +74,8 @@ namespace HttpSender.Test
         {
             string putResult = Sender.Put("http://localhost/mvcserver/home/testput?c=4");
             Assert.Equal("Put 4", putResult);
+            putResult = Sender.Put("127.0.0.1/mvcserver/home/testput?c=5");
+            Assert.Equal("Put 5", putResult);
         }
 
         [Fact]
@@ -76,6 +84,9 @@ namespace HttpSender.Test
             Dictionary<string, string> test = new Dictionary<string, string> { { "c", "5" } };
             string putResult = Sender.Put("http://localhost/mvcserver/home/testput", test);
             Assert.Equal("Put 5", putResult);
+            test = new Dictionary<string, string> { { "c", "25" } };
+            putResult = Sender.Put("localhost/mvcserver/home/testput", test);
+            Assert.Equal("Put 25", putResult);
         }
 
         [Fact]
@@ -92,6 +103,8 @@ namespace HttpSender.Test
         {
             string deleteResult = Sender.Delete("http://localhost/mvcserver/home/testdelete?d=6");
             Assert.Equal("Delete 6", deleteResult);
+            deleteResult = Sender.Delete("localhost/mvcserver/home/testdelete?d=10");
+            Assert.Equal("Delete 10", deleteResult);
         }
 
         [Fact]
