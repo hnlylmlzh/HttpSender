@@ -21,6 +21,10 @@ namespace UnitTest
             Assert.AreEqual("[\"value1\",\"value2\"]", getResult);
             getResult = Sender.Get("https://www.baidu.com");
             Assert.IsTrue(getResult.Contains("<title>百度一下，你就知道</title>"));
+            getResult = Sender.Get("www.baidu.com");
+            Assert.IsTrue(getResult.Contains("<title>百度一下，你就知道</title>"));
+            getResult = Sender.Get("baidu.com");
+            Assert.IsTrue(getResult.Length > 0);
         }
 
         [TestMethod]
@@ -40,6 +44,8 @@ namespace UnitTest
             Assert.AreEqual("\"asd\"", postResult);
             postResult = Sender.Post("http://localhost/apiserver/api/values", "value=汉字");
             Assert.AreEqual("\"汉字\"", postResult);
+            postResult = Sender.Post("127.0.0.1/apiserver/api/values", "value=春天");
+            Assert.AreEqual("\"春天\"", postResult);
         }
 
         [TestMethod]
@@ -72,6 +78,9 @@ namespace UnitTest
             Dictionary<string, string> test = new Dictionary<string, string> { { "c", "5" } };
             string putResult = Sender.Put("http://localhost/mvcserver/home/testput", test);
             Assert.AreEqual("Put 5", putResult);
+            Dictionary<string, string> test0 = new Dictionary<string, string> { { "c", "100" } };
+            string putResult0 = Sender.Put("localhost/mvcserver/home/testput", test0);
+            Assert.AreEqual("Put 100", putResult0);
         }
 
         [TestMethod]
@@ -87,6 +96,8 @@ namespace UnitTest
         public void DeleteTest()
         {
             string deleteResult = Sender.Delete("http://localhost/mvcserver/home/testdelete?d=6");
+            Assert.AreEqual("Delete 6", deleteResult);
+            deleteResult = Sender.Delete("127.0.0.1/mvcserver/home/testdelete?d=6");
             Assert.AreEqual("Delete 6", deleteResult);
         }
 

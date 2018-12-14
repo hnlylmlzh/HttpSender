@@ -20,6 +20,7 @@ namespace HttpSender
 
         public static string Get(string url)
         {
+            FixUrl(ref url);
             Task<HttpResponseMessage> GetTask = client.GetAsync(url);
             try
             {
@@ -33,6 +34,7 @@ namespace HttpSender
 
         public static string Post(string url, string content)
         {
+            FixUrl(ref url);
             byte[] byteArray = Encoding.UTF8.GetBytes(content);
             MemoryStream memory = new MemoryStream(byteArray);
             StreamContent contentStream = new StreamContent(memory);
@@ -50,6 +52,7 @@ namespace HttpSender
 
         public static string Post(string url, Dictionary<string, string> content)
         {
+            FixUrl(ref url);
             Task<HttpResponseMessage> PostTask = client.PostAsync(url, new FormUrlEncodedContent(content));
             try
             {
@@ -63,6 +66,7 @@ namespace HttpSender
 
         public static string Put(string url)
         {
+            FixUrl(ref url);
             Task<HttpResponseMessage> PutTask = client.PutAsync(url, null);
             try
             {
@@ -76,6 +80,7 @@ namespace HttpSender
 
         public static string Put(string url, Dictionary<string, string> content)
         {
+            FixUrl(ref url);
             Task<HttpResponseMessage> PutTask = client.PutAsync(url, new FormUrlEncodedContent(content));
             try
             {
@@ -89,6 +94,7 @@ namespace HttpSender
 
         public static string Delete(string url)
         {
+            FixUrl(ref url);
             Task<HttpResponseMessage> DeleteTask = client.DeleteAsync(url);
             try
             {
@@ -123,6 +129,14 @@ namespace HttpSender
             {
                 HttpContent result = task.Result.Content;
                 return result.ReadAsStringAsync().Result;
+            }
+        }
+
+        private static void FixUrl(ref string url)
+        {
+            if (url.StartsWith("http", StringComparison.OrdinalIgnoreCase) == false)
+            {
+                url = "http://" + url;
             }
         }
     }
