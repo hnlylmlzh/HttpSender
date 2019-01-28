@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using HttpSender;
 using BenchmarkDotNet.Attributes;
+using System.Threading.Tasks;
 
 namespace Performance.Test
 {
@@ -11,23 +12,41 @@ namespace Performance.Test
         [Benchmark]
         public void start()
         {
-            string Response = string.Empty;
-            Response = Sender.Get("http://localhost/mvcserver/home/info?username=jim");
-            Response = Sender.Post("http://localhost/mvcserver/home/login", "username=jim&password=123456");
-            Dictionary<string, string> LoginInfo = new Dictionary<string, string>
+            Task[] tasks = new Task[3];
+            tasks[0] = Task.Run(() =>
             {
-              { "username", "jim" },
-              { "password", "123456" }
-            };
-            Response = Sender.Post("http://localhost/mvcserver/home/login", LoginInfo);
-            Response = Sender.Put("http://localhost/mvcserver/home/update?username=jim&age=15");
-            Dictionary<string, string> UpdateInfo = new Dictionary<string, string>
+                string Response = string.Empty;
+                for (int i = 0; i < 100000; i++)
+                {
+                    Response = Sender.Get("localhost/apiserver/api/test");
+                    Response = Sender.Post("localhost/apiserver/api/test", string.Empty);
+                    Dictionary<string, string> content = new Dictionary<string, string>();
+                    Response = Sender.Post("localhost/apiserver/api/test", content);
+                }
+            });
+            tasks[1] = Task.Run(() =>
             {
-                { "username", "jim" },
-                { "age" , "15"}
-            };
-            Response = Sender.Put("http://localhost/mvcserver/home/update", UpdateInfo);
-            Response = Sender.Delete("http://localhost/mvcserver/home/delete?username=jim&year=2011");
+                string Response = string.Empty;
+                for (int i = 0; i < 100000; i++)
+                {
+                    Response = Sender.Get("localhost/apiserver/api/test");
+                    Response = Sender.Post("localhost/apiserver/api/test", string.Empty);
+                    Dictionary<string, string> content = new Dictionary<string, string>();
+                    Response = Sender.Post("localhost/apiserver/api/test", content);
+                }
+            });
+            tasks[2] = Task.Run(() =>
+            {
+                string Response = string.Empty;
+                for (int i = 0; i < 100000; i++)
+                {
+                    Response = Sender.Get("localhost/apiserver/api/test");
+                    Response = Sender.Post("localhost/apiserver/api/test", string.Empty);
+                    Dictionary<string, string> content = new Dictionary<string, string>();
+                    Response = Sender.Post("localhost/apiserver/api/test", content);
+                }
+            });
+            Task.WaitAll(tasks);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Security.Authentication;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace HttpSender.Test
 {
@@ -156,6 +157,55 @@ namespace HttpSender.Test
             Assert.Equal("jim's age is 15", Response);
             Response = Sender.Delete("http://localhost/mvcserver/home/delete?username=jim&year=2011");
             Assert.Equal("jim's information in 2011 has been deleted",Response);
+        }
+
+        [Fact]
+        public void BenckMarkTest()
+        {
+            Task[] tasks = new Task[3];
+            tasks[0] = Task.Run(() =>
+            {
+                string Response = string.Empty;
+                for (int i = 0; i < 10; i++)
+                {
+                    Response = Sender.Get("localhost/apiserver/api/test");
+                    Assert.Equal("\"Hello world\"",Response);
+                    Response = Sender.Post("localhost/apiserver/api/test", string.Empty);
+                    Assert.Equal("\"Hello world\"", Response);
+                    Dictionary<string, string> content = new Dictionary<string, string>();
+                    Response = Sender.Post("localhost/apiserver/api/test", content);
+                    Assert.Equal("\"Hello world\"", Response);
+                }
+            });
+            tasks[1] = Task.Run(() =>
+            {
+                string Response = string.Empty;
+                for (int i = 0; i < 10; i++)
+                {
+                    Response = Sender.Get("localhost/apiserver/api/test");
+                    Assert.Equal("\"Hello world\"", Response);
+                    Response = Sender.Post("localhost/apiserver/api/test", string.Empty);
+                    Assert.Equal("\"Hello world\"", Response);
+                    Dictionary<string, string> content = new Dictionary<string, string>();
+                    Response = Sender.Post("localhost/apiserver/api/test", content);
+                    Assert.Equal("\"Hello world\"", Response);
+                }
+            });
+            tasks[2] = Task.Run(() =>
+            {
+                string Response = string.Empty;
+                for (int i = 0; i < 10; i++)
+                {
+                    Response = Sender.Get("localhost/apiserver/api/test");
+                    Assert.Equal("\"Hello world\"", Response);
+                    Response = Sender.Post("localhost/apiserver/api/test", string.Empty);
+                    Assert.Equal("\"Hello world\"", Response);
+                    Dictionary<string, string> content = new Dictionary<string, string>();
+                    Response = Sender.Post("localhost/apiserver/api/test", content);
+                    Assert.Equal("\"Hello world\"", Response);
+                }
+            });
+            Task.WaitAll(tasks);
         }
     }
 }
