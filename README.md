@@ -1,4 +1,4 @@
-# HttpSender [![avatar](https://img.shields.io/badge/nuget-v0.3.0-yellowgreen.svg)](https://www.nuget.org/packages/HttpSender/)
+# HttpSender [![avatar](https://img.shields.io/badge/nuget-v0.3.1-yellowgreen.svg)](https://www.nuget.org/packages/HttpSender/)
 A simple library to send Http request
 
 ## Usage
