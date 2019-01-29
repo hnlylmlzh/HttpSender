@@ -25,6 +25,8 @@ namespace UnitTest
             Assert.IsTrue(getResult.Contains("<title>百度一下，你就知道</title>"));
             getResult = Sender.Get("baidu.com");
             Assert.IsTrue(getResult.Length > 0);
+            getResult = Sender.Get("Http://localhost/apiserver/api/test");
+            Assert.AreEqual("\"Hello world\"", getResult);
         }
 
         [TestMethod]
@@ -46,6 +48,8 @@ namespace UnitTest
             Assert.AreEqual("\"汉字\"", postResult);
             postResult = Sender.Post("127.0.0.1/apiserver/api/values", "value=春天");
             Assert.AreEqual("\"春天\"", postResult);
+            postResult = Sender.Post("HTTP://127.0.0.1/apiserver/api/test", "");
+            Assert.AreEqual("\"Hello world\"", postResult);
         }
 
         [TestMethod]
@@ -54,6 +58,8 @@ namespace UnitTest
             Dictionary<string, string> test = new Dictionary<string, string> { { "b", "3" } };
             string postResult = Sender.Post("http://localhost/mvcserver/home/contact", test);
             Assert.AreEqual("Post 3", postResult);
+            postResult = Sender.Post("HTTP://127.0.0.1/apiserver/api/test", new Dictionary<string, string> { });
+            Assert.AreEqual("\"Hello world\"", postResult);
         }
 
         [TestMethod]
