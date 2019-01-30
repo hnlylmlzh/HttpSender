@@ -13,10 +13,12 @@ namespace HttpSender
     {
         private static HttpClient client = new HttpClient();
 
+        /*
         public static void OAuth(string token)
         {
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
+        */
 
         public static string Get(string url)
         {

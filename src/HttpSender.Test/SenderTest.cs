@@ -115,7 +115,7 @@ namespace HttpSender.Test
             Assert.Throws<TimeoutException>(() => Sender.Delete("http://localhost/mvcserver/home/waitdelete?d=5"));
         }
 
-
+        /*
         [Fact]
         public void AuthTest()
         {
@@ -130,6 +130,7 @@ namespace HttpSender.Test
             result = Sender.Get("http://localhost/mvcserver/home/testauth?e=7");
             Assert.NotEqual("Auth 7", result);
         }
+        */
 
         [Fact]
         public void DemoTest()

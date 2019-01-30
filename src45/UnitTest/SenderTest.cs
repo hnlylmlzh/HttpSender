@@ -114,7 +114,7 @@ namespace UnitTest
             Assert.ThrowsException<TimeoutException>(() => Sender.Delete("http://localhost/mvcserver/home/waitdelete?d=5"));
         }
 
-
+        /*
         [TestMethod]
         public void AuthTest()
         {
@@ -129,6 +129,7 @@ namespace UnitTest
             result = Sender.Get("http://localhost/mvcserver/home/testauth?e=7");
             Assert.AreNotEqual("Auth 7", result);
         }
+        */
 
         [TestMethod]
         public void DemoTest()
