@@ -1,4 +1,4 @@
-# HttpSender [![avatar](https://img.shields.io/badge/nuget-v0.3.1-yellowgreen.svg)](https://www.nuget.org/packages/HttpSender/)
+# HttpSender [![avatar](https://img.shields.io/badge/nuget-v0.4.0-yellowgreen.svg)](https://www.nuget.org/packages/HttpSender/)
 A simple library to send Http request
 
 ## Usage
@@ -42,11 +42,4 @@ string Response = Sender.Put("http://localhost:5000/home/update", UpdateInfo);
 #### static string Delete(string url)
 ```
 string Response = Sender.Delete("http://localhost:5000/home/delete?username=jim&year=2011");
-```
-### Set OAuth Token in the Http header
-#### static void OAuth(string token)
-```
-//Providing that the oauth token is this string, "your_token"
-Sender.OAuth("your_token");
-string Result = Sender.Get("http://localhost:5000/home/secret");
 ```
